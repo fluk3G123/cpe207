@@ -1,6 +1,15 @@
 const addTaskBtn = document.querySelector("#add-task-btn");
 const taskInput = document.querySelector("#task-input");
 
+taskInput.onkeyup = (event) => {
+  if (event.key === "Enter") {
+    addTask();
+  }
+  // if (event.target.value !== "") {
+  //   addTaskBtn.disabled;
+  // }
+};
+
 const addTask = () => {
   if (taskInput.value === "") {
     alert("Please insert task");
@@ -18,6 +27,13 @@ const addTask = () => {
   liElem.appendChild(spanElem);
   liElem.appendChild(deleteBtn);
   document.body.appendChild(liElem);
+
+  deleteBtn.onclick = () => {
+    document.body.removeChild(liElem);
+  };
+
+  taskInput.value = "";
+  addTaskBtn.disabled = true;
 };
 
 addTaskBtn.onclick = () => {
